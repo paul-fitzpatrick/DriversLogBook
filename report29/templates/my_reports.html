@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if report29s %}
+
+{% for report in report29s %}
+<div class="no-margin bg-light">
+  <h1 class="text-align bg-light">Report History for {{ user }}, Report #{{ forloop.counter }}</h1>
+  <table class="text-align table table-striped table-light">
+
+    <tbody>
+      <tr>
+        <th scope="row">Ref#:</th>
+        <td>{{ report29.ref_number }}</td>
+      </tr>
+
+      <tr>
+        <th scope="row">Car:</th>
+        <td>{{ report29.car }}</td>
+      </tr>
+
+      <tr>
+        <th scope="row">Time of fault:</th>
+        <td>{{ report29.time_of_fault }}</td>
+      </tr>
+
+      <tr>
+        <th scope="row">Date of fault:</th>
+        <td>{{ report29.date_of_fault }}</td>
+      </tr>
+
+      <tr>
+        <th scope="row">Location at time of fault:</th>
+        <td>{{ report29.location_at_time_of_fault }}</td>
+      </tr>
+
+      <tr>
+        <th scope="row">Reported by:</th>
+        <td>{{ report29.driver_name }}</td>
+      </tr>
+
+      <tr>
+        <th scope="row">Status:</th>
+        <td>
+
+          {% if report29.report_read %}
+          <span style="color:orange;">Report read by DSM - more info to follow </span>
+
+          {% elif report29.report_read and report29.work_order_closed and report29.work_order_created %}
+          <span style="color: red;">Work order closed</span>
+
+          {% elif report29.work_order_created %}
+          <span style="color: lightgreen;">Work order opened</span>
+
+
+
+
+          {% else %}
+          <span>Report not yet read by DSM</span>
+          {% endif %}
+        </td>
+      </tr>
+
+
+
+      {% if report29.report_read and report29.work_order_created %}
+      <tr>
+        <th scope="row">Work order number</th>
+        <td>{{ report29.work_order_number }}</td>
+      </tr>
+      {% endif %}
+    </tbody>
+  </table>
+</div>
+
+<div class="bg-light p-2">
+  <p class="p-2">
+    <strong>The following issue was reported:</strong>
+    <br>
+    {{ report29.defect_details }} <span class="hidden">{{ report29.defect_keyword }}</span>
+  </p>
+
+
+
+  {% if report29.report_read and report29.work_order_closed and report29.work_order_created %}
+  <p class="p-2">
+    <strong>Feedback from depot/repair info:</strong>
+    <br>{{ report29.Depot_feedback }}
+  </p>
+  {% endif %}
+</div>
+
+<div class="break"></div>
+
+{% endfor %}
+
+
+{% else %}
+<h1 class="text-align bg-light">You have no reports to display</h1>
+{% endif %}
+
+
+
+{% endblock %}

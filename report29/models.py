@@ -4,7 +4,7 @@ from django.dispatch import receiver
 from django.contrib.auth.models import User
 
 
-class report29(models.Model):
+class report_29(models.Model):
     OPTIONS = (
         ('Brake Issue', 'Brake Issue'),
         ('main engine', 'main engine'),

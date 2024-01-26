@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+{% if request.user.is_authenticated %}
+<br class="fide"><br class="fide">
+<div class="search-container">
+
+  <!--add logbook report-->
+  <div class="choice-box text-align">
+    <h5 class="h5-banner1">Add a Log Book entry</h5>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <a class= "btn btn-signup btn-lg" href="">Report Issue</a>
+  </div>
+
+  
+  <!--unit history-->
+  <div class="choice-box text-align">
+    <h5 class="h5-banner1">View all reports for any 29000</h5>
+    <br>
+    <br>
+    <br>
+  
+    <form method="GET" action="" class="form-inline my-2 my-lg-0">
+      <input class="search-box form-control border border-black rounded-0"
+        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+        type="text" maxlength="50" name="u" placeholder="Enter unit e.g 29010">
+        <button class="hidden"></button>
+        <button class="history-btn btn btn-signup btn-lg" type="submit">View Unit History</button>
+    </form>
+  </div>
+  {% endif %}
+
+</div>
+
+{% endblock %}
