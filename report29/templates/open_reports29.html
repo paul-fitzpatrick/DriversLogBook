@@ -14,37 +14,29 @@
         <th scope="col">Report Details</th>
       </tr>
     </thead>
-    {% for report in report29s %}
+    {% for report29 in reports29 %} 
     <tbody>
       <tr>
-        
-        <td>{{ report29.car }}</td>
+        <td>{{ report29.car }}</td> 
         <td>{{ report29.date_of_fault }}</td>
-
         <td>
           {% if report29.report_read and report29.work_order_closed and report29.work_order_created %}
           <span style="color: red;">W/O Closed</span>
-
           {% elif report29.work_order_created %}
           <span style="color: lightgreen;">W/O Created</span>
-
           {% else %}
           <span style="color:orange;">Read By Admin/DSM</span>
           {% endif %}
-
         </td>
-
-        <td><a href="{% url 'report_detail' report.id %}">
-            View
-          </a></td>
+        <td>
+          <a href="{% url 'report_detail29' report29.id %}">View</a> 
+        </td>
       </tr>
-
-      <!----if no reports have been approved-->
-      {% empty %}
-      <h5 class="text-align bg-light">There are no reports matching your search. return to <a class="nav-link"
-          href="{% url 'reports_list' %}">Log Book Entries</a></h5>
-
-      {% endfor %}
+    </tbody>
+  {% empty %}
+    <h5 class="text-align bg-light">There are no reports matching your search. return to <a class="nav-link"
+        href="{% url 'reports_list29' %}">Log Book Entries</a></h5>
+  {% endfor %}
 
     </tbody>
   </table>
@@ -53,7 +45,7 @@
 <div class="back-btn text-align">
   <a class=" bg-light btn btn-signup btn-lg" href="/">Return to Home</a>
 
-  <a class="btn btn-signup btn-lg" href="{% url 'add_report' %}">Click here add a Log Book entry <i
+  <a class="btn btn-signup btn-lg" href="{% url 'add_report29' %}">Click here add a Log Book entry <i
       class="fa fa-regular fa-book"></i></a>
 
 </div>

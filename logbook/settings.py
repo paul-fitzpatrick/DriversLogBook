@@ -18,10 +18,6 @@ if os.path.isfile('env.py'):
     import env
 
 
-SITE_ID = 1  
-
-
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -37,11 +33,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['8000-paulfitzpat-driverslogb-3zur1md3aaz.ws-eu107.gitpod.io']
 
-
+#ALLAUTH
 LOGIN_REDIRECT_URL = '/'   
 LOGOUT_REDIRECT_URL = '/'
 
+SITE_ID = 1 
 
+ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 # Add Render.com URL to allowed hosts
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
@@ -57,6 +55,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
     'django.contrib.sites',
     'allauth',
     'allauth.account',
@@ -85,8 +84,6 @@ ROOT_URLCONF = 'logbook.urls'
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')   
-
-ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 TEMPLATES = [
     {

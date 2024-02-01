@@ -10,10 +10,10 @@ from .views import update_report_29
 urlpatterns = [
     path('index29.html', views.index29, name='index29'),
     path('open_reports29.html', views.reports_list29, name='reports_list29'),
-    path('unit_history29.html', views.unit_history29, name='history29'),
+    path('unit_history29.html', views.unit_history29, name='unit_history29'),
     # path('closed_reports.html', views.closed_reports_list, name='closed_reports_list'),
     path('report_detail29.html/<report_29_id>/', views.report_detail29, name='report_detail29'),
-    path('my_reports/', views.my_reports29, name='my_reports'), #
+    path('my_reports/', views.my_reports, name='my_reports'), #
     path('add_report29.html', views.add_report29, name='add_report29'),
     # path('my_messages/', views.my_messages, name='my_messages'),
     path('update_driver29.html', update_drivermail29, name='update_driver29'),

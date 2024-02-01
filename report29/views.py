@@ -51,14 +51,14 @@ def index29(request):
 # render report detail page
 def report_detail29(request, report_29_id):
     """ A view to return the report details page """
-    report = get_object_or_404(report_29, pk=report_29_id)
+    report29 = get_object_or_404(report_29, pk=report_29_id)
 
     # Get the previous and next items
     previous_item = report_29.objects.filter(id__lt=report_29_id).order_by('-id').first()
     next_item = report_29.objects.filter(id__gt=report_29_id).order_by('id').first()
 
     context = {
-        'report': report,
+        'report29': report29,
         'prev_item': previous_item,
         'next_item': next_item,
     }
@@ -69,12 +69,12 @@ def report_detail29(request, report_29_id):
 # add report view
 def add_report29(request):
     if request.method == "POST":
-        form = ReportForm(request.POST, request=request)
+        form = ReportForm29(request.POST, request=request)
         if form.is_valid():
             form.instance.customer_email = request.user.email
             form.instance.name = request.user.username
-            report = form.save(commit=False)
-            report.save()
+            report29 = form.save(commit=False)
+            report29.save()
 
             # Send an email using SendGrid
             try:
@@ -117,21 +117,21 @@ def add_report29(request):
 
             return redirect('open_reports29.html')  # Redirect to the desired page after adding the report
     else:
-        form = ReportForm(request=request)
+        form = ReportForm29(request=request)
     
     context = {
         'form': form,
-        'report_added': True,
+        'report29_added': True,
     }
     
     return render(request, 'add_report29.html', context)
 
 
-# Search box
+# Search box and open reports view
 def reports_list29(request):
     """ A View to return all read/work order reports and search queries """
 
-    reports = report_29.objects.filter(report_read=True)
+    reports29 = report_29.objects.filter(report_read=True)
     query = None
     categories = None
     sort = None
@@ -141,7 +141,7 @@ def reports_list29(request):
         if 'sort' in request.GET:
             sortkey = request.GET['sort']
             sort = sortkey    
-            reports = reports.order_by(sortkey)
+            reports29 = reports29.order_by(sortkey)
         
         if 'q' in request.GET:
             query = request.GET['q']
@@ -151,11 +151,11 @@ def reports_list29(request):
                 return redirect('/')
 
             queries = Q(car__icontains=query) | Q(defect_keyword__icontains=query)   
-            reports = reports.filter(queries)
+            reports29 = reports29.filter(queries)
     current_sorting = f'{sort}_{direction}'
 
     context = {
-        'reports': reports,
+        'reports29': reports29,
         'search_term': query,
         
         'current_sorting': current_sorting,
@@ -171,7 +171,7 @@ class CustomJSONEncoder(DjangoJSONEncoder):
 
 
 # my report page
-def my_reports29(request):
+def my_reports(request):
     # Retrieve the user's reports
     reports = report_29.objects.filter(driver_email=request.user.email)
 
@@ -190,7 +190,7 @@ def my_reports29(request):
 def unit_history29(request):
     """ A View to return all read/work order reports and search queries """
 
-    reports = report_29.objects.all()
+    reports29 = report_29.objects.all()
     query = None
     sort = None
     direction = None
@@ -199,7 +199,7 @@ def unit_history29(request):
         if 'sort' in request.GET:
             sortkey = request.GET['sort']
             sort = sortkey    
-            reports = reports.order_by(sortkey)
+            reports29 = reports29.order_by(sortkey)
         
         if 'u' in request.GET:
             query = request.GET['u']
@@ -209,16 +209,16 @@ def unit_history29(request):
 
             last_two_numbers = query[-2:]  # Extract the last two numbers from the query
             queries = Q(car__endswith=last_two_numbers)   
-            reports = reports.filter(queries)
+            reports29 = reports29.filter(queries)
 
-            if not reports.exists():  # Check if there are no results
+            if not reports29.exists():  # Check if there are no results
                 messages.info(request, f"There are no results for '{query}'")
                 return redirect('/', {'search_term': query})
 
     current_sorting = f'{sort}_{direction}'
 
     context = {
-        'reports': reports,
+        'reports29': reports29,
         'search_term': query,
         'current_sorting': current_sorting,
     }

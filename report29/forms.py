@@ -10,7 +10,7 @@ class DateInput(forms.DateInput):
 class ReportForm29(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         request = kwargs.pop('request', None)
-        super(ReportForm, self).__init__(*args, **kwargs)
+        super(ReportForm29, self).__init__(*args, **kwargs)
         if request and request.user.is_authenticated:
             self.fields['driver_name'].initial = request.user.username
             self.fields['driver_email'].initial = request.user.email
