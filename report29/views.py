@@ -205,7 +205,7 @@ def unit_history29(request):
             query = request.GET['u']
             if not query:
                 messages.error(request, "You didn't enter anything to search")
-                return redirect('/')
+                return redirect('index29')
 
             last_two_numbers = query[-2:]  # Extract the last two numbers from the query
             queries = Q(car__endswith=last_two_numbers)   

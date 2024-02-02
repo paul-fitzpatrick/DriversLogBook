@@ -4,13 +4,14 @@
 {% block content %}
 
 <!---------additional nav----->
-<ul class="nav">
+<ul class="nav addition-nav">
   <li class="nav-item">
-    <a class="nav-link active" href="{% url 'reports_list29' %}">29000 Reports</a>
+    <a class="nav-link active text-white" href="{% url 'reports_list29' %}">29000 Reports</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="add_report29">Add A Report</a>
+    <a class="nav-link text-white" href="{% url 'add_report29' %}">Add A Report</a>
   </li>
+
 
   <!--search box for free text or dropdown keywords-->
   <form id="searchbox" method="GET" action="{% url 'reports_list29' %}" class="form-inline my-2 my-lg-0">
@@ -45,9 +46,11 @@
       type="text" maxlength="50" name="q" id="q" placeholder="search by car">
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
   </form>
- 
+</ul>
 
-
+<h2 class="text-align fleet-title-text">
+  29000 Fleet Index
+</h2>
 {% if request.user.is_authenticated %}
 <br class="fide"><br class="fide">
 <div class="search-container">
