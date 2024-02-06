@@ -17,8 +17,8 @@ from django.contrib.sessions.models import Session
 import json
 from django.core.serializers.json import DjangoJSONEncoder
 from datetime import time
-# from sendgrid import SendGridAPIClient
-# from sendgrid.helpers.mail import Mail
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
 import os
 
 
@@ -131,7 +131,7 @@ def add_report29(request):
 def reports_list29(request):
     """ A View to return all read/work order reports and search queries """
 
-    reports29 = report_29.objects.filter(report_read=True)
+    reports29 = report_29.objects.all() 
     query = None
     categories = None
     sort = None

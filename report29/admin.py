@@ -15,8 +15,8 @@ from io import BytesIO
 from reportlab.pdfgen import canvas
 from reportlab.lib import colors
 from django.contrib import messages
-# from sendgrid import SendGridAPIClient
-# from sendgrid.helpers.mail import Mail
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
 import os
 
 
@@ -24,7 +24,7 @@ import os
 class report_29Admin(admin.ModelAdmin):
     search_fields = ('car', 'date_of_fault', 'defect_keyword', 'ref_number')
     list_display = ('car', 'date_of_fault', 'ref_number', 'driver_name', 'report_read', 'work_order_created', 'work_order_closed', 'driver_emailed')
-    actions = ['download_information', 'send_email_action', 'pdf_download']  # Registering the custom actions
+    actions = ['download_information29', 'send_email_action', 'pdf_download']  # Registering the custom actions
 
     def approve_report(self, request, queryset):
         queryset.update(report_approved=True)

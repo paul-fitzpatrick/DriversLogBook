@@ -4,6 +4,16 @@
 
 {% block content %}
 
+<!---------additional nav----->
+<ul class="nav addition-nav">
+    <li class="nav-item">
+      <a class="nav-link active text-white" href="{% url 'reports_list29' %}">29000 Reports</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-white" href="{% url 'add_report29' %}">Add A Report</a>
+    </li>
+</ul>
+
 <!--generate random number-->
 <script>
     function populateRefNumber() {

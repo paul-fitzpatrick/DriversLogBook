@@ -4,6 +4,17 @@
 
 {% block content %}
 
+<!---------additional nav----->
+<ul class="nav addition-nav">
+  <li class="nav-item">
+    <a class="nav-link active text-white" href="{% url 'reports_list29' %}">29000 Reports</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link text-white" href="{% url 'add_report29' %}">Add A Report</a>
+  </li>
+</ul>
+
+
 <div class="table-align bg-light">
   <table class="text-align table table-striped table-light">
     <thead>
@@ -20,12 +31,17 @@
         <td>{{ report29.car }}</td> 
         <td>{{ report29.date_of_fault }}</td>
         <td>
-          {% if report29.report_read and report29.work_order_closed and report29.work_order_created %}
-          <span style="color: red;">W/O Closed</span>
+          {% if report29.report_read %}
+          <span style="color:orange;">Report read by DSM - more info to follow </span>
+
+          {% elif report29.report_read and report29.work_order_closed and report29.work_order_created %}
+          <span style="color: red;">Work order closed</span>
+
           {% elif report29.work_order_created %}
-          <span style="color: lightgreen;">W/O Created</span>
+          <span style="color: lightgreen;">Work order opened</span>
+
           {% else %}
-          <span style="color:orange;">Read By Admin/DSM</span>
+          <span>Report not yet read by DSM</span>
           {% endif %}
         </td>
         <td>

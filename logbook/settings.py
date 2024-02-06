@@ -31,7 +31,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-paulfitzpat-driverslogb-3zur1md3aaz.ws-eu107.gitpod.io']
+ALLOWED_HOSTS = ['8000-paulfitzpat-driverslogb-3zur1md3aaz.ws-eu108.gitpod.io']
 
 #ALLAUTH
 LOGIN_REDIRECT_URL = '/'   
@@ -49,6 +49,7 @@ if RENDER_EXTERNAL_HOSTNAME:
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -173,3 +174,65 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
  
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+#sendgrid
+EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
+SENDGRID_API_KEY = os.getenv('sendgrid_key')
+DEFAULT_FROM_EMAIL = 'fitzer99@gmail.com'  # Replace with your sender email
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+
+
+
+#jazzmin settings
+JAZZMIN_SETTINGS = {
+    "site_title": "All Fleets Admin",
+    "site_header": "Logbook",
+    "site_brand": "Driver Logbook",
+    "login_logo": None,
+    "login_logo_dark": None,
+    "site_logo_classes": "img-circle",
+    "site_icon": None,
+    "welcome_sign": "Welcome to Driver Logbok Admin",
+    "copyright": "Your Copyright Here",
+    "search_model": ["auth.User", "auth.Group"],
+    "user_avatar": None,
+    "topmenu_links": [
+        {"name": "Home", "url": "admin:index", "permissions": ["auth.view_user"]},
+        {"name": "Support", "url": "https://github.com/farridav/django-jazzmin/issues", "new_window": True},
+        {"app": "home"},
+        {"app": "checkout"},
+        {"app": "package"},
+    ],
+    "usermenu_links": [
+        {"name": "Support", "url": "https://github.com/farridav/django-jazzmin/issues", "new_window": True},
+        {"model": "auth.User"},
+    ],
+    "show_sidebar": True,
+    "navigation_expanded": True,
+    "hide_apps": [],
+    "hide_models": [],
+    "order_with_respect_to": ["auth", "home", "checkout", "package"],
+    "custom_links": {
+        "home": [{"name": "Custom Link", "url": "your_custom_url", "icon": "fas fa-link"}],
+    },
+    "icons": {
+        "auth": "fas fa-users-cog",
+        "auth.user": "fas fa-user",
+        "auth.Group": "fas fa-users",
+        "home": "fas fa-home",  # Icon for the 'home' app
+        "checkout": "fas fa-shopping-cart",  # Icon for the 'checkout' app
+        "package": "fas fa-box",  # Icon for the 'package' app
+    },
+    "default_icon_parents": "fas fa-chevron-circle-right",
+    "default_icon_children": "fas fa-circle",
+    "related_modal_active": False,
+    "custom_css": None,
+    "custom_js": None,
+    "use_google_fonts_cdn": True,
+    "show_ui_builder": False,
+    "changeform_format": "horizontal_tabs",
+    "changeform_format_overrides": {"auth.user": "collapsible", "auth.group": "vertical_tabs"},
+    "language_chooser": False,  #avoid a lot of hassle!!!
+}
