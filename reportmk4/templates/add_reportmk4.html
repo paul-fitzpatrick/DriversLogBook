@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags%}
+
+{% block content %}
+
+<!---------additional nav----->
+<ul class="nav addition-nav">
+    <li class="nav-item">
+      <a class="nav-link active text-white" href="{% url 'reports_listmk4' %}">Mark4 Reports</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-white" href="{% url 'add_reportmk4' %}">Add A Report</a>
+    </li>
+</ul>
+
+<!--generate random number-->
+<script>
+    function populateRefNumber() {
+  // Generate a random number between 10000 and 99999
+  var randomNumber = Math.floor(Math.random() * 90000) + 10000;
+
+  // Get the reference number field element
+  var refNumberField = document.getElementById("id_ref_number");
+
+  // Set the generated random number as the value of the field
+  refNumberField.value = randomNumber;
+}
+
+// Add an event listener to the button
+var generateButton = document.getElementById("generateButton");
+generateButton.addEventListener("click", populateRefNumber);
+</script>
+
+
+{% if request.user.is_authenticated %}
+<div class="formdiv">
+    <div>
+
+        <form id="contact-form" class="all-forms" enctype="multipart/form-data" method="post" style="margin-top: 1.3em;">
+            <h3>Add mk4000 LogBook Entry <i class="fa fa-arrow-down"></i> </h3>
+            <input type="hidden" name="contact_number">
+        
+            <hr>
+            
+            {{ form | crispy }}
+            {% csrf_token %}
+            <!--csrf token removed-->
+            <button onclick="populateRefNumber()" type="submit" class="btn btn-signup btn-lg">Submit Mark4 Report</button>
+         </form>
+         
+         <br>
+         <br>
+
+    </div>
+</div>
+{% else %}
+<div class="all-forms text-align">
+    <h4>You must be logged in to fill out a logbook report <br> <a class="nav-link" href="{% url 'account_login' %}">Log In</a></h4>
+</div>
+
+{% endif %}
+{% endblock %}

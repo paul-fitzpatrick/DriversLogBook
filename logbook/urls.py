@@ -28,7 +28,13 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('', include('report29.urls')),
     path('', include('report28.urls')),
+    path('', include('report071.urls')),
+    path('', include('report85.urls')),
+    path('', include('report26.urls')),
+    path('', include('report81.urls')),
     path('', include('report22.urls')),
+    path('', include('report201.urls')),
+    path('', include('reportmk4.urls')),
     path('', include('home.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

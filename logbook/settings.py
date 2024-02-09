@@ -64,6 +64,12 @@ INSTALLED_APPS = [
     'report29',
     'report28',
     'report22',
+    'report201',
+    'report26',
+    'report071',
+    'report81',
+    'report85',
+    'reportmk4',
     'home',
 ]
 

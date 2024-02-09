@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags%}
+
+{% block content %}
+
+<!---------additional nav----->
+<ul class="nav addition-nav">
+    <li class="nav-item">
+      <a class="nav-link active text-white" href="{% url 'reports_list26' %}">2600 Reports</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-white" href="{% url 'add_report26' %}">Add A Report</a>
+    </li>
+</ul>
+
+
+<div class="no-margin bg-light">
+
+    <table class="text-align table table-striped table-light">
+
+        <tbody>
+
+            <tr>
+                <th scope="row">Car:</th>
+                <td>{{ report26.car }}</td>
+            </tr>
+
+            <tr>
+                <th scope="row">Time of fault:</th>
+                <td>{{ report26.time_of_fault }}</td>
+            </tr>
+
+            <tr>
+                <th scope="row">Date of fault:</th>
+                <td>{{ report26.date_of_fault }}</td>
+            </tr>
+
+            <tr>
+                <th scope="row">Location at time of fault:</th>
+                <td>{{ report26.location_at_time_of_fault }}</td>
+            </tr>
+
+            <tr>
+                <th scope="row">Reported by:</th>
+                <td>{{ report26.driver_name }}</td>
+            </tr>
+
+            <tr>
+                <th scope="row">Status:</th>
+                <td>
+
+                    {% if report26.report_read %}
+                    <span style="color:orange;">Report read by DSM - more info to follow </span>
+          
+                    {% elif report26.report_read and report26.work_order_closed and report26.work_order_created %}
+                    <span style="color: red;">Work order closed</span>
+          
+                    {% elif report26.work_order_created %}
+                    <span style="color: lightgreen;">Work order opened</span>
+          
+                    {% else %}
+                    <span>Report not yet read by DSM</span>
+                    {% endif %}
+                </td>
+            </tr>
+            
+
+
+            {% if report26.report_read and report26.work_order_created %}
+            <tr>
+                <th scope="row">Work order number</th>
+                <td>{{ report26.work_order_number }}</td>
+            </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+
+<div class="bg-light p-2">
+    <p class="p-2">
+        <strong>The following issue was reported:</strong>
+        <br>
+        {{ report26.defect_details }}  <span class="hidden">{{ report26.defect_keyword }}</span>
+    </p>
+
+    
+
+    {% if report26.report_read and report26.work_order_closed and report26.work_order_created %}
+    <p class="p-2">
+       <strong>Feedback from depot/repair info:</strong> 
+       <br>{{ report26.Depot_feedback }}
+    </p>
+    {% endif %}
+</div>
+
+<div class="back-btn text-align">
+
+    <!-- Navigation buttons -->
+    {% if next_item %}
+        <a class="btn btn-signup bg-light" href="{% url 'report_detail26' next_item.id %}">previous Report</a>
+    {% endif %}
+    
+    {% if prev_item %}
+        <a class="btn btn-signup bg-light" href="{% url 'report_detail26' prev_item.id %}">Next Report</a>
+    {% endif %}
+    
+    
+    
+    <br><a class="btn btn-signup bg-light" href="{% url 'reports_list26' %}">Return to Log Book entries page</a>
+
+
+{% endblock %}
