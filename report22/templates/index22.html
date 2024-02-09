@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<!---------additional nav----->
+<ul class="nav addition-nav">
+  <li class="nav-item">
+    <a class="nav-link active text-white" href="{% url 'reports_list22' %}">22000 Reports</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link text-white" href="{% url 'add_report22' %}">Add A Report</a>
+  </li>
+
+
+  <!--search box for free text or dropdown keywords-->
+  <form id="searchbox" method="GET" action="{% url 'reports_list22' %}" class="form-inline my-2 my-lg-0">
+    <select class="form-control border border-black rounded-0"
+      onchange="document.getElementById('q').value = this.value;">
+      <option value="">Use Keyword</option>
+      <option value="Brake Issue">Brake Issue</option>
+      <option value="main engine">Main Engine</option>
+      <option value="gen engine">Gen Engine</option>
+      <option value="EDC fault">EDC Fault</option>
+      <option value="EDC fault">TDC Fault</option>
+      <option value="bad oil level">Bad Oil Level</option>
+      <option value="low HYDRO oil">Low HYDRO Oil</option>
+      <option value="low coolant">Low Coolant</option>
+      <option value="door">Door</option>
+      <option value="wiper">Wiper</option>
+      <option value="radio">Radio</option>
+      <option value="HVAC">HVAC</option>
+      <option value="Heating">Heating</option>
+      <option value="CAWS">CAWS</option>
+      <option value="Head lamps">Head lamps</option>
+      <option value="MMI">MMI</option>
+      <option value="Cab Seals">Cab Seals</option>
+      <option value="Window">Window</option>
+      <option value="Internal Lights">Internal Lights</option>
+      <option value="External Lights">External Lights</option>
+      <option value="Saloon Issues">Saloon Issues</option>
+      <option value="Fuel Issues">Fuel Issues</option>
+    </select>
+    <input class="form-control border border-black rounded-0"
+      oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+      type="text" maxlength="50" name="q" id="q" placeholder="search by car">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>
+</ul>
+
+<h2 class="text-align fleet-title-text">
+  22000 Fleet Index
+</h2>
+{% if request.user.is_authenticated %}
+<br class="fide"><br class="fide">
+<div class="search-container">
+
+  <!--add logbook report-->
+  <div class="choice-box text-align">
+    <h5 class="h5-banner1">Add a Log Book entry</h5>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <a class= "btn btn-signup btn-lg" href="{% url 'add_report22' %}">Report Issue</a>
+  </div>
+
+  
+  <!--unit history-->
+  <div class="choice-box text-align">
+    <h5 class="h5-banner1">View all reports for any 22000</h5>
+    <br>
+    <br>
+    <br>
+  
+    <form method="GET" action="{% url 'unit_history22' %}" class="form-inline my-2 my-lg-0">
+      <input class="search-box form-control border border-black rounded-0"
+        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+        type="text" maxlength="50" name="u" placeholder="Enter unit e.g 22010">
+        <button class="hidden"></button>
+        <button class="history-btn btn btn-signup btn-lg" type="submit">View Unit History</button>
+    </form>
+  </div>
+  {% endif %}
+
+</div>
+
+{% endblock %}

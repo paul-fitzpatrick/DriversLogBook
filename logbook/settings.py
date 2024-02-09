@@ -62,6 +62,8 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'report29',
+    'report28',
+    'report22',
     'home',
 ]
 

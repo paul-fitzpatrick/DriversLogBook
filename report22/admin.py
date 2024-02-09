@@ -2,9 +2,9 @@ from django.contrib import admin
 from django.http import HttpResponse
 from django.urls import reverse
 from django.utils.html import format_html
-from .models import report_29
+from .models import report_22
 from django.shortcuts import render
-from .forms import UpdateForm29
+from .forms import UpdateForm22
 import json
 import requests
 from django.template.loader import render_to_string
@@ -20,16 +20,16 @@ from sendgrid.helpers.mail import Mail
 import os
 
 
-@admin.register(report_29)
-class report_29Admin(admin.ModelAdmin):
+@admin.register(report_22)
+class report_22Admin(admin.ModelAdmin):
     search_fields = ('car', 'date_of_fault', 'defect_keyword', 'ref_number')
     list_display = ('car', 'date_of_fault', 'ref_number', 'driver_name', 'report_read', 'work_order_created', 'work_order_closed', 'driver_emailed')
-    actions = ['download_information29', 'send_email_action', 'pdf_download']  # Registering the custom actions
+    actions = ['download_information22', 'send_email_action', 'pdf_download']  # Registering the custom actions
 
     def approve_report(self, request, queryset):
         queryset.update(report_approved=True)
 
-    def download_information29(self, request, queryset):
+    def download_information22(self, request, queryset):
         # Define the fields to include in the downloaded file
         fields = ['Grade', 'driver_name', 'driver_email', 'car', 'location_at_time_of_fault',
                   'time_of_fault', 'date_of_fault', 'defect_keyword', 'defect_details',
@@ -48,7 +48,7 @@ class report_29Admin(admin.ModelAdmin):
         response.write(csv_content)
         return response
 
-    download_information29.short_description = 'Download Logbook Report CSV'  # Action description for the admin interface
+    download_information22.short_description = 'Download Logbook Report CSV'  # Action description for the admin interface
 
     def approve_report(self, request, queryset):
         queryset.update(report_approved=True, status_changed=True)

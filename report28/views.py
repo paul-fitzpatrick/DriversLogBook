@@ -1,14 +1,14 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic, View
-from .models import report_29
+from .models import report_28
 from django.contrib import messages
-from .forms import ReportForm29, UpdateForm29
+from .forms import ReportForm28, UpdateForm28
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.db.models.functions import Lower
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
-from .models import report_29
+from .models import report_28
 from django.views.generic import ListView
 from django.views.decorators.cache import cache_page
 from django.views.decorators.csrf import csrf_protect
@@ -22,38 +22,59 @@ from sendgrid.helpers.mail import Mail
 import os
 
 
-def index29(request):
-    """ A view to return the index29 page """
+# def report_test(request):
+#     """ A View to return all read/work order reports """
+#     reports = report_28.objects.all
+#     context = {
+#         'reports': reports
+#     }
 
-    return render(request, 'index29.html')
+#     return render(request, 'report_test.html', context)
+
+
+# # render closed reports 
+# def closed_reports_list(request):
+#     """ A View to return all closed work order reports """
+#     reports = report_28.objects.filter(work_order_closed=True)
+    
+#     context = {
+#         'reports': reports
+#     }
+
+#     return render(request, 'closed_reports.html', context)
+
+def index28(request):
+    """ A view to return the index28 page """
+
+    return render(request, 'index28.html')
 
 # render report detail page
-def report_detail29(request, report_29_id):
+def report_detail28(request, report_28_id):
     """ A view to return the report details page """
-    report29 = get_object_or_404(report_29, pk=report_29_id)
+    report28 = get_object_or_404(report_28, pk=report_28_id)
 
     # Get the previous and next items
-    previous_item = report_29.objects.filter(id__lt=report_29_id).order_by('-id').first()
-    next_item = report_29.objects.filter(id__gt=report_29_id).order_by('id').first()
+    previous_item = report_28.objects.filter(id__lt=report_28_id).order_by('-id').first()
+    next_item = report_28.objects.filter(id__gt=report_28_id).order_by('id').first()
 
     context = {
-        'report29': report29,
+        'report28': report28,
         'prev_item': previous_item,
         'next_item': next_item,
     }
 
-    return render(request, 'report_detail29.html', context)
+    return render(request, 'report_detail28.html', context)
 
 
 # add report view
-def add_report29(request):
+def add_report28(request):
     if request.method == "POST":
-        form = ReportForm29(request.POST, request=request)
+        form = ReportForm28(request.POST, request=request)
         if form.is_valid():
             form.instance.customer_email = request.user.email
             form.instance.name = request.user.username
-            report29 = form.save(commit=False)
-            report29.save()
+            report28 = form.save(commit=False)
+            report28.save()
 
             # Send an email using SendGrid
             try:
@@ -94,23 +115,23 @@ def add_report29(request):
                 else:
                     messages.error(request, f'An error occurred while sending the email: {error_message}')
 
-            return redirect('open_reports29.html')  # Redirect to the desired page after adding the report
+            return redirect('open_reports28.html')  # Redirect to the desired page after adding the report
     else:
-        form = ReportForm29(request=request)
+        form = ReportForm28(request=request)
     
     context = {
         'form': form,
-        'report29_added': True,
+        'report28_added': True,
     }
     
-    return render(request, 'add_report29.html', context)
+    return render(request, 'add_report28.html', context)
 
 
 # Search box and open reports view
-def reports_list29(request):
+def reports_list28(request):
     """ A View to return all read/work order reports and search queries """
 
-    reports29 = report_29.objects.all() 
+    reports28 = report_28.objects.all() 
     query = None
     categories = None
     sort = None
@@ -120,7 +141,7 @@ def reports_list29(request):
         if 'sort' in request.GET:
             sortkey = request.GET['sort']
             sort = sortkey    
-            reports29 = reports29.order_by(sortkey)
+            reports28 = reports28.order_by(sortkey)
         
         if 'q' in request.GET:
             query = request.GET['q']
@@ -130,16 +151,16 @@ def reports_list29(request):
                 return redirect('/')
 
             queries = Q(car__icontains=query) | Q(defect_keyword__icontains=query)   
-            reports29 = reports29.filter(queries)
+            reports28 = reports28.filter(queries)
     current_sorting = f'{sort}_{direction}'
 
     context = {
-        'reports29': reports29,
+        'reports28': reports28,
         'search_term': query,
         
         'current_sorting': current_sorting,
     }
-    return render(request, 'open_reports29.html', context)
+    return render(request, 'open_reports28.html', context)
 
 
 class CustomJSONEncoder(DjangoJSONEncoder):
@@ -152,7 +173,7 @@ class CustomJSONEncoder(DjangoJSONEncoder):
 # my report page
 def my_reports(request):
     # Retrieve the user's reports
-    reports = report_29.objects.filter(driver_email=request.user.email)
+    reports = report_28.objects.filter(driver_email=request.user.email)
 
     # Serialize the reports to JSON using the custom encoder
     reports_json = json.dumps(list(reports.values()), cls=CustomJSONEncoder)
@@ -166,10 +187,10 @@ def my_reports(request):
 
 
 # unit history search box
-def unit_history29(request):
+def unit_history28(request):
     """ A View to return all read/work order reports and search queries """
 
-    reports29 = report_29.objects.all()
+    reports28 = report_28.objects.all()
     query = None
     sort = None
     direction = None
@@ -178,70 +199,70 @@ def unit_history29(request):
         if 'sort' in request.GET:
             sortkey = request.GET['sort']
             sort = sortkey    
-            reports29 = reports29.order_by(sortkey)
+            reports28 = reports28.order_by(sortkey)
         
         if 'u' in request.GET:
             query = request.GET['u']
             if not query:
                 messages.error(request, "You didn't enter anything to search")
-                return redirect('index29')
+                return redirect('index28')
 
             last_two_numbers = query[-2:]  # Extract the last two numbers from the query
             queries = Q(car__endswith=last_two_numbers)   
-            reports29 = reports29.filter(queries)
+            reports28 = reports28.filter(queries)
 
-            if not reports29.exists():  # Check if there are no results
+            if not reports28.exists():  # Check if there are no results
                 messages.info(request, f"There are no results for '{query}'")
                 return redirect('/', {'search_term': query})
 
     current_sorting = f'{sort}_{direction}'
 
     context = {
-        'reports29': reports29,
+        'reports28': reports28,
         'search_term': query,
         'current_sorting': current_sorting,
     }
-    return render(request, 'unit_history29.html', context)
+    return render(request, 'unit_history28.html', context)
 
 
-# def my_messages29(request):
-#     messages = report_29.objects.filter(driver_name=request.user.username).order_by('-date_of_fault')
+# def my_messages28(request):
+#     messages = report_28.objects.filter(driver_name=request.user.username).order_by('-date_of_fault')
 #     return render(request, 'my_messages.html', {'messages': messages})
 
 
-def update_driver_view29(request):
-    return render(request, 'update_driver29.html')
+def update_driver_view28(request):
+    return render(request, 'update_driver28.html')
 
 
-def update_drivermail29(request):
+def update_drivermail28(request):
     form = UpdateForm(request.POST)
 
     if request.method == "POST":
         if form.is_valid():
             update = form.save(commit=False)
             update.save()
-            return redirect('open_reports29.html')  # Redirect to the desired URL after form submission
+            return redirect('open_reports28.html')  # Redirect to the desired URL after form submission
 
     context = {
         'form': form,
     }
     
-    return render(request, 'update_driver29.html', context)
+    return render(request, 'update_driver28.html', context)
     
 
 # hidden form for emailing drivers of update
-def update_report_29(request, report_29_id):
-    report_29 = get_object_or_404(report_29, pk=report_29_id)
+def update_report_28(request, report_28_id):
+    report_28 = get_object_or_404(report_28, pk=report_28_id)
 
     if request.method == 'POST':
         # Handle the form submission
-        form = UpdateForm(request.POST, instance=report_29)
+        form = UpdateForm(request.POST, instance=report_28)
         if form.is_valid():
             form.save()
             # Send email code here
-            return redirect('admin:report_report_29_changelist')  # Redirect to the changelist view
+            return redirect('admin:report_report_28_changelist')  # Redirect to the changelist view
     else:
         # Display the form
-        form = UpdateForm(instance=report_29)
+        form = UpdateForm(instance=report_28)
 
-    return render(request, 'update_driver29.html', {'form': form})
+    return render(request, 'update_driver28.html', {'form': form})
