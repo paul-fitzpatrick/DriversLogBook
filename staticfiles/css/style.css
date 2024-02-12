@@ -1,0 +1,323 @@
+body{
+    background-color: rgba(214, 199, 199, 0.767);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap');
+
+/*------additional nav---------------------*/
+.addition-nav {
+  background-color: #333;
+}
+
+.fleet-title-text {
+  margin-top: 20%;
+  font-size: 36px; /* Adjust the font size as needed */
+  font-weight: bold;
+  
+}
+
+
+/*----------------------------------------------------*/
+
+  body {
+    background: url("/media/Irish_Rail_logo.svg.png") no-repeat center center;
+    /* background-color: rgba(214, 199, 199, 0.767); */
+      background-size: auto 100%;
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      font-family: 'Maven Pro',
+          sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+
+  }
+
+  /* footer {
+      margin-top: 5%;
+      width: 100%;
+  } */
+
+  footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    
+    padding: 20px;
+    text-align: center;
+  }
+
+  .text-align {
+      text-align: center;
+  }
+
+  .search-container {
+      display: flex;
+  }
+
+  .h5-banner1 {
+      background-color: green;
+      padding: 22px;
+  }
+
+  .h5-banner {
+      background-color: green;
+      padding: 10px;
+  }
+
+  .choice-box {
+      margin-top: 10%;
+      margin-left: 10%;
+      margin-right: 10%;
+      position: relative;
+      width: 30%;
+      padding-bottom: 3%;
+      border: 1px solid #ccc;
+      background: rgba(144, 238, 144, 0.5);
+  }
+
+  .search-box {
+      margin-left: 7px;
+      width: 50%;
+      padding: 10px;
+      font-size: 16px;
+  }
+
+  .history-btn {
+    margin-left: 27px;
+  }
+
+  .hidden {
+    visibility: hidden;
+  }
+
+  
+  /*----------------form--------------------*/
+
+  .all-forms {
+      background-color: lightgreen;
+      width: 90%;
+      margin: auto;
+      padding: 2%;
+      border-radius: 8px;
+      max-width: 700px;
+  }
+
+  .sign-forms {
+      background-color: lightgreen;
+      width: 90%;
+      margin: auto;
+      padding: 2%;
+      border-radius: 8px;
+      max-width: 700px;
+  }
+
+
+  #id_location_at_time_of_fault.textarea {
+      width: 100%;
+      height: 40px;
+  }
+
+  #id_defect_details.textarea {
+      width: 100%;
+  }
+
+  #id_message.textarea {
+      width: 100%;
+  }
+  
+  /* #id_ref_number {
+    visibility: hidden;
+  } */
+
+  /* #id_Depot_feedback.textarea {
+    display: none;
+}
+
+#div_id_Depot_feedback.control-group {
+    display: none;
+} */
+
+  label {
+      margin-top: 15px;
+      margin-bottom: 1px;
+  }
+
+  input,
+  textarea {
+      border-radius: 5px
+  }
+
+  .btn-signup {
+      background-color: #F5F5F5;
+      color: black;
+      margin: 2%;
+  }
+
+  /*--------table----------*/
+
+
+
+  /*------report detail-----------*/
+
+  .detail-heading {
+      width: 100%;
+      padding: 4%;
+  }
+
+  .detail-heading {
+      font-size: large;
+  }
+
+  /* p {
+    padding: 4%;
+    background-color: #3d5c5c;
+} */
+
+  h5 {
+      margin: 0;
+  }
+
+  div {
+      margin: 0px;
+      margin: 0;
+      padding: 0;
+  }
+
+  .back-btn {
+      padding: 0;
+  }
+
+  .alert {
+      background-color: lightgreen;
+      width: 50%;
+  }
+
+  .break {
+    height: 25px;
+    background-color: transparent;
+  }
+
+  /*-------------------------------------Hover.css*/
+  .choice-box {
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.3s;
+  }
+  
+  .choice-box::before {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(11, 233, 41, 0.5);
+    transition: transform 0.5s;
+    z-index: -1;
+  }
+  
+  .choice-box:hover::before {
+    transform: translateY(-100%);
+  }
+
+  .about-div {
+    background-color: lightgreen;
+    margin-top: 3%;
+    width: 80%;
+    padding: 5%;
+  }
+
+  .feedback {
+    margin-bottom: 5%;
+  }
+  /*-------------media queries----------*/
+
+
+  @media screen and (min-width: 1000px) {
+    .choice-box {
+    margin-top: 10%;
+    margin-left: 10%;
+    margin-right: 10%;
+    position: relative;
+    width: 30%;
+    }
+  }
+  
+/* work monitor */
+  @media screen and (min-width: 1000px) {
+    .search-box-container {
+    margin-left: 700px; 
+}
+  }
+  
+  /* laptop */
+  @media screen and (min-width: 992px) {
+    #searchbox {
+    margin-left: 150px; 
+}
+  }
+
+  
+  @media (min-width: 501px) {
+    .fide {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: 500px) {
+    .search-container {
+        margin-left: 40px;
+      display: flex;
+      flex-direction: column;
+    }
+    .choice-box {
+        width: 75%;
+    }
+
+    .choice-box {
+        margin-top: 10%;
+    }
+  
+    .search-container .choice-box br {
+        display: none;
+      }
+  }
+
+
+/*----------------------------index page image links ----------------------------------*/
+  /* Container for the links */
+  .link-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  /* Style for each link */
+  .link-container a {
+    width: 48%; /* Adjust as needed to leave some space between columns */
+    margin-bottom: 20px;
+    text-align: center;
+    text-decoration: none;
+    color: #333; /* Adjust text color */
+  }
+  
+  .link-container img {
+    width: 60%;
+    max-width: 60%;
+    height: auto;
+  }
+  
+  .link-container span {
+    display: block;
+    margin-top: 10px;
+    font-size: 16px; /* Adjust font size */
+  }
+  

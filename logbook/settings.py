@@ -119,8 +119,6 @@ else:
     }
 
 
-SECRET_KEY = os.environ.get('SECRET_KEY')
-
 DATABASES = {
     'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
 }
@@ -157,12 +155,14 @@ USE_I18N = True
 
 USE_TZ = True
 
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / "static"]
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 MEDIA_URL = '/media/'             
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
