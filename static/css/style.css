@@ -20,7 +20,7 @@ body{
 /*----------------------------------------------------*/
 
   body {
-    background: url("/media/Irish_Rail_logo.svg.png") no-repeat center center;
+    background: url("https://res.cloudinary.com/dyd68dlge/image/upload/v1707741961/newlogbook/Irish_Rail_logo.svg_qozuqc.png") no-repeat center center;
     /* background-color: rgba(214, 199, 199, 0.767); */
       background-size: auto 100%;
       padding: 0;

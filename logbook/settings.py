@@ -2,6 +2,9 @@
 import dj_database_url
 from pathlib import Path
 from django.contrib.messages import constants as messages
+import cloudinary
+from cloudinary.uploader import upload
+from cloudinary.utils import cloudinary_url
 import os
 if os.path.isfile('env.py'):
     import env
@@ -45,6 +48,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cloudinary_storage',
+    'cloudinary',
     'crispy_forms',
     'django.contrib.sites',
     'allauth',
