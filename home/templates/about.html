@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container about-div">
+    
+        <h1 class="text-center">About the Drivers Logbook App</h1>
+        <p class="r">This web-app was developed to allow driver to make logbook reports that immediately notify via email, the Duty managers in Drogheda DMU depot, and most importantly for drivers, provide feedback on the status of an issue after the report has dealt with by maintenance.
+          <br>Once the DSM have read the report, the report information will appear in the 'Logbook Entries' Page, from then on, the status will change from the intial status of <span style="color:orange;">Read By Admin/DSM</span>, to <span style= "color: lightgreen; background-color: antiquewhite;">W/O Created</span>, then finally to <span style="color: red;">W/O Closed</span>.
+          <br>Once a work order is closed, the reporting driver will be emailed of the new status.
+          <br>
+        </p>
+        <hr>
+        <h3>Using The App</h3>
+
+        <ul>
+          <li>Drivers must register/log in to create a report through the app, by registering this creates a user profile where a driver can quickly view a history of reports they have made.</li>
+          <li>On submission of a logbook report, both the driver and admin/DSM are emailed a copy of the report made, this will act as an alert for the admin/DSM and a receipt of sorts with a reference number for the driver.</li>
+          <li>When a issue has been resolved, an email detailing the repair carried out will be emailed to the driver</li>
+        </ul>  
+
+        <h3>Search Features</h3>
+        <ul>
+          <li>On the homepage,without having to log in, drivers can search through a unit’s full history e.g 29001, this should be of value for a quick check before taking a unit into traffic. Note: reports only display in the 'logbook entries' page after the DSM confirm having read the report - but the unit history results page will display all results, in the event another driver reported an issue earlier the same day and the DSM have yet to read it, these results will display the status 'Report not yet read by DSM'</li>
+          <li>The database of entries can be searched by car e.g. 29111, in order to view all issue relating to the given car</li>
+          <li>The database of entries can be searched by keyword to help identify problematic trends.</li>
+          <li>All or any selection of results in the report database can be download as a CSV file to be saved and viewed in excel.</li>
+          <li>Individual reports can be downloaded as Pdf files.</li>
+        </ul>
+
+        <h3>Areas of Interest to Admin/Management</h3>
+        <ul>
+          
+          <li>When filling in the report form, drivers must select a keyword that relates to their issue, the database can be then searched using these keywords to help identify problematic trends, e.g. searching main engine will yeid all results containing 'main engine' is the defect details section of the form. Any word can be searched for, but by mandating the use of keywords, this eliminates the risk of not finding the desires results due to spelling error or if a driver entered 'm/e' or 'main eng' for 'main engine' in there report. </li>
+          <li>All or any selection of results in the report database can be downloaded as a CSV file to be saved and viewed in excel. This is similar to how multipe results are downloaded and viewed from fieldreach.</li>
+          <li>Individual reports can be downloaded as Pdf files if they are needed to be emailed to bring to someones attention, or possibly handed to staff in place of a printed work order.</li>
+          <li>DSM/admin, once they select a report which has been closed out, they can select from a drop down, the option to email the driver of the selected report, in order to update them of their issue having had it maintenance work completed.</li>
+        </ul>
+     
+  </div>
+
+  <br> <br><br> <br>
+
+    {% endblock %}
+
+    
+    
+
+    

@@ -171,19 +171,19 @@ class CustomJSONEncoder(DjangoJSONEncoder):
 
 
 # my report page
-def my_reports(request):
-    # Retrieve the user's reports
-    reports = report_28.objects.filter(driver_email=request.user.email)
+# def my_reports(request):
+#     # Retrieve the user's reports
+#     reports = report_28.objects.filter(driver_email=request.user.email)
 
-    # Serialize the reports to JSON using the custom encoder
-    reports_json = json.dumps(list(reports.values()), cls=CustomJSONEncoder)
+#     # Serialize the reports to JSON using the custom encoder
+#     reports_json = json.dumps(list(reports.values()), cls=CustomJSONEncoder)
 
-    context = {
-        'reports_json': reports_json,
-        'reports': reports
-    }
+#     context = {
+#         'reports_json': reports_json,
+#         'reports': reports
+#     }
 
-    return render(request, 'my_reports.html', context)
+#     return render(request, 'my_reports.html', context)
 
 
 # unit history search box

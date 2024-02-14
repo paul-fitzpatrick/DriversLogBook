@@ -44,7 +44,7 @@
       <ul class="navbar-nav mr-auto">
 
         <li class="nav-item active">
-          <a  href=""><span class="nav-link">About This App</span></a>
+          <a  href="about.html"><span class="nav-link">About This App</span></a>
         </li>
 
         <!--  if logged in and request.user.is_superuser  -->
@@ -56,12 +56,12 @@
         </li>
         {% endif %}
 
-        <li class="nav-item active">
+        <!-- <li class="nav-item active">
           <a href=""><span class="nav-link">Driver Feedback</span></a> 
-        </li>
+        </li> -->
         
         <li>
-          <a id="my_reports" href=""><span class="nav-link">My Reports</span></a>
+          <a id="my_reports" href="{% url 'my_all_reports' %}"><span class="nav-link">My Reports</span></a>
         </li>
 
         <!-- <li>
