@@ -82,6 +82,12 @@
         <button class="history-btn btn btn-signup btn-lg" type="submit">View Unit History</button>
     </form>
   </div>
+
+  {% else %}
+
+  <div class="all-forms text-align">
+    <h4>You must be logged in in to view the 'Add Report' & 'Vehicle History' Pages <br> <a class="nav-link" href="{% url 'account_login' %}">Log In</a></h4>
+</div>
   {% endif %}
 
 </div>
